@@ -4,7 +4,7 @@ from discord.ext import commands
 import os
 
 TOKEN = os.getenv("DISCORD_TOKEN")
-GUILD_ID = 123456789012345678  # Remplace par l'ID de ton serveur
+GUILD_ID = 1360356060229013605  # Remplace par l'ID de ton serveur
 CONFESS_CHANNEL_ID = 1362195027953979482
 LOG_CHANNEL_ID = 1363998877338042478
 
