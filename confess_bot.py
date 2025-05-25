@@ -23,7 +23,7 @@ async def confess(interaction: discord.Interaction, message: str):
    
     guild = interaction.guild
     embed = discord.Embed(
-        title="🕊️ Confession Anonyme",
+        title="🪭 Confession Anonyme",
         description=message,
         color=discord.Color.from_rgb(15, 15, 15)  # Noir très sombre
     )
