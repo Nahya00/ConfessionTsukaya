@@ -20,13 +20,15 @@ async def on_ready():
 @tree.command(name="confess", description="Envoie une confession anonyme", guild=discord.Object(id=GUILD_ID))
 @app_commands.describe(message="Ce que tu veux avouer...")
 async def confess(interaction: discord.Interaction, message: str):
-    # Embed de confession
+   
+    guild = interaction.guild
     embed = discord.Embed(
-        title="📨 Nouvelle confession anonyme",
+        title="🕊️ Confession Anonyme",
         description=message,
-        color=discord.Color.dark_theme()
+        color=discord.Color.from_rgb(15, 15, 15)  # Noir très sombre
     )
-    embed.set_footer(text="Partagée anonymement")
+    embed.set_thumbnail(url=guild.icon.url if guild.icon else discord.Embed.Empty)
+    embed.set_footer(text="Envoyé anonymement • Discord", icon_url=guild.icon.url if guild.icon else None)
 
     # Envoi dans le salon public
     confess_channel = bot.get_channel(CONFESS_CHANNEL_ID)
