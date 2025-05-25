@@ -1,0 +1,1 @@
+worker: python3 confess_bot.py
