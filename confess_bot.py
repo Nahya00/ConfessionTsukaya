@@ -4,9 +4,9 @@ from discord.ext import commands
 import os
 
 TOKEN = os.getenv("DISCORD_TOKEN")  # Utilisé pour Railway ou fichier .env
-GUILD_ID = 1360356060229013605  # Remplace par l'ID de ton serveur
-CONFESS_CHANNEL_ID = 1362195027953979482
-LOG_CHANNEL_ID = 1363998877338042478
+GUILD_ID = 1361778893681463436  # Remplace par l'ID de ton serveur
+CONFESS_CHANNEL_ID = 1379271000532975707
+LOG_CHANNEL_ID = 1379271452578021459
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -23,7 +23,7 @@ async def confess(interaction: discord.Interaction, message: str):
    
     guild = interaction.guild
     embed = discord.Embed(
-        title="🪭 Confession Anonyme",
+        title="🌘 Confession Anonyme",
         description=message,
         color=discord.Color.from_rgb(15, 15, 15)  # Noir très sombre
     )
