@@ -6,7 +6,7 @@ import os
 TOKEN = os.getenv("DISCORD_TOKEN")  # Remplace par ton token ou définis dans Railway
 GUILD_ID = 1361778893681463436  # Remplace par l'ID de ton serveur
 CONFESS_CHANNEL_ID = 1379271000532975707
-LOG_CHANNEL_ID = 1379271457187696711
+LOG_CHANNEL_ID = 1379271452578021459
 
 intents = discord.Intents.default()
 intents.message_content = True
