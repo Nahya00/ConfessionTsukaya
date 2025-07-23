@@ -24,7 +24,7 @@ async def on_ready():
     await tree.sync(guild=discord.Object(id=GUILD_ID))
     print(f"{bot.user} connecté avec commandes slash synchronisées.")
 
-@tree.command(name="confess", description="Envoie une gossip anonyme", guild=discord.Object(id=GUILD_ID))
+@tree.command(name="gossip", description="Envoie une gossip anonyme", guild=discord.Object(id=GUILD_ID))
 @app_commands.describe(message="Ce que tu veux avouer...")
 async def confess(interaction: discord.Interaction, message: str):
     global gossip_counter
