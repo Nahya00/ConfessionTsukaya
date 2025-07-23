@@ -27,12 +27,12 @@ async def on_ready():
 @tree.command(name="confess", description="Envoie une gossip anonyme", guild=discord.Object(id=GUILD_ID))
 @app_commands.describe(message="Ce que tu veux avouer...")
 async def confess(interaction: discord.Interaction, message: str):
-    global confession_counter
+    global gossip_counter
     guild = interaction.guild
     channel = bot.get_channel(CONFESS_CHANNEL_ID)
 
     embed = discord.Embed(
-        title=f"💋 Gossip #{confession_counter}",
+        title=f"💋 Gossip #{gossip_counter}",
         description=message,
         color=discord.Color.from_rgb(15, 15, 15)
     )
@@ -43,8 +43,8 @@ async def confess(interaction: discord.Interaction, message: str):
         embed.set_footer(text="Envoyé anonymement • Tsukaya")
 
     confess_message = await channel.send(embed=embed)
-    thread = await confess_message.create_thread(name=f"Confession #{confession_counter}")
-    confession_threads[confession_counter] = thread.id
+    thread = await confess_message.create_thread(name=f"Confession #{gossip_counter}")
+    gossip_threads[gossip_counter] = thread.id
 
     # Logs modérateurs
     log_channel = bot.get_channel(LOG_CHANNEL_ID)
@@ -52,17 +52,17 @@ async def confess(interaction: discord.Interaction, message: str):
         f"📨 Nouvelle gossip croustillante #{confession_counter} par {interaction.user.name}#{interaction.user.discriminator} (ID: {interaction.user.id})\nMessage : {message}"
     )
 
-    await interaction.response.send_message(f"✅ Confession #{confession_counter} envoyée anonymement.", ephemeral=True)
-    confession_counter += 1
+    await interaction.response.send_message(f"✅ Gossip #{gossip_counter} envoyée anonymement.", ephemeral=True)
+    gossip_counter += 1
 
-@tree.command(name="repondre", description="Répondre à une confession", guild=discord.Object(id=GUILD_ID))
-@app_commands.describe(numero="Numéro de la confession", message="Ta réponse", anonyme="Réponse anonyme ?")
+@tree.command(name="repondre", description="Répondre à une gossip", guild=discord.Object(id=GUILD_ID))
+@app_commands.describe(numero="Numéro de la gossip", message="Ta réponse", anonyme="Réponse anonyme ?")
 async def repondre(interaction: discord.Interaction, numero: int, message: str, anonyme: bool):
-    if numero not in confession_threads:
-        await interaction.response.send_message("❌ Ce numéro de confession est introuvable.", ephemeral=True)
+    if numero not in gossip_threads:
+        await interaction.response.send_message("❌ Ce numéro de gossip est introuvable.", ephemeral=True)
         return
 
-    thread_id = confession_threads[numero]
+    thread_id = Gossip_threads[numero]
     thread = bot.get_channel(thread_id)
     if not thread:
         await interaction.response.send_message("❌ Impossible de retrouver le thread associé.", ephemeral=True)
@@ -81,7 +81,7 @@ async def repondre(interaction: discord.Interaction, numero: int, message: str, 
     # Logs modérateurs
     log_channel = bot.get_channel(LOG_CHANNEL_ID)
     await log_channel.send(
-        f"🧾 Réponse à confession #{numero} par {interaction.user.name}#{interaction.user.discriminator} (ID: {interaction.user.id})\nAnonyme: {anonyme}\nMessage : {message}"
+        f"🧾 Réponse à gossip #{numero} par {interaction.user.name}#{interaction.user.discriminator} (ID: {interaction.user.id})\nAnonyme: {anonyme}\nMessage : {message}"
     )
 
     await interaction.response.send_message("✅ Ta réponse a été envoyée.", ephemeral=True)
