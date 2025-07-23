@@ -80,7 +80,7 @@ async def gossip(
 
     try:
         thread = await gossip_message.create_thread(
-            name=f"Confession #{gossip_counter}",
+            name=f"Gossip #{gossip_counter}",
             auto_archive_duration=60
         )
         gossip_threads[gossip_counter] = thread.id
