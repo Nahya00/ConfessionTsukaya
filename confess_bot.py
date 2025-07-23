@@ -24,7 +24,7 @@ async def on_ready():
     await tree.sync(guild=discord.Object(id=GUILD_ID))
     print(f"{bot.user} connecté avec commandes slash synchronisées.")
 
-@tree.command(name="confess", description="Envoie une confession anonyme", guild=discord.Object(id=GUILD_ID))
+@tree.command(name="confess", description="Envoie une gossip anonyme", guild=discord.Object(id=GUILD_ID))
 @app_commands.describe(message="Ce que tu veux avouer...")
 async def confess(interaction: discord.Interaction, message: str):
     global confession_counter
@@ -32,15 +32,15 @@ async def confess(interaction: discord.Interaction, message: str):
     channel = bot.get_channel(CONFESS_CHANNEL_ID)
 
     embed = discord.Embed(
-        title=f"🕊️ Confession #{confession_counter}",
+        title=f"💋 Gossip #{confession_counter}",
         description=message,
         color=discord.Color.from_rgb(15, 15, 15)
     )
     if guild.icon:
         embed.set_thumbnail(url=guild.icon.url)
-        embed.set_footer(text="Envoyé anonymement • Discord", icon_url=guild.icon.url)
+        embed.set_footer(text="Envoyé anonymement • Tsukaya", icon_url=guild.icon.url)
     else:
-        embed.set_footer(text="Envoyé anonymement • Discord")
+        embed.set_footer(text="Envoyé anonymement • Tsukaya")
 
     confess_message = await channel.send(embed=embed)
     thread = await confess_message.create_thread(name=f"Confession #{confession_counter}")
@@ -49,7 +49,7 @@ async def confess(interaction: discord.Interaction, message: str):
     # Logs modérateurs
     log_channel = bot.get_channel(LOG_CHANNEL_ID)
     await log_channel.send(
-        f"📨 Nouvelle confession #{confession_counter} par {interaction.user.name}#{interaction.user.discriminator} (ID: {interaction.user.id})\nMessage : {message}"
+        f"📨 Nouvelle gossip croustillante #{confession_counter} par {interaction.user.name}#{interaction.user.discriminator} (ID: {interaction.user.id})\nMessage : {message}"
     )
 
     await interaction.response.send_message(f"✅ Confession #{confession_counter} envoyée anonymement.", ephemeral=True)
