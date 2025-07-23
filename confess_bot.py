@@ -5,7 +5,7 @@ import os
 
 TOKEN = os.getenv("DISCORD_TOKEN")  # Remplace par ton token ou définis dans Railway
 GUILD_ID = 1361778893681463436  # Remplace par l'ID de ton serveur
-CONFESS_CHANNEL_ID = 1397371944877424651
+CONFESS_CHANNEL_ID = 1397390928985063466
 LOG_CHANNEL_ID = 1379271452578021459
 
 intents = discord.Intents.default()
@@ -42,7 +42,7 @@ async def confess(interaction: discord.Interaction, message: str):
     else:
         embed.set_footer(text="Envoyé anonymement • Tsukaya")
 
-    confess_message = await channel.send(embed=embed)
+    gossip_message = await channel.send(embed=embed)
     thread = await confess_message.create_thread(name=f"Confession #{gossip_counter}")
     gossip_threads[gossip_counter] = thread.id
 
