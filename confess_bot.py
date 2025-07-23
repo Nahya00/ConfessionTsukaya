@@ -16,8 +16,8 @@ intents.members = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 tree = bot.tree
 
-confession_counter = 1  # Incrémentation manuelle (pourrait être persistée dans une BDD)
-confession_threads = {}  # Dict pour mapper numéros de confessions à threads
+gossip_counter = 1  # Incrémentation manuelle (pourrait être persistée dans une BDD)
+gossip_threads = {}  # Dict pour mapper numéros de confessions à threads
 
 @bot.event
 async def on_ready():
